@@ -12,6 +12,12 @@ export default class Form extends Component {
       fromAddressCity: '',
       fromAddressState: '',
       fromAddressZip: '',
+      toName: '',
+      toAddressLine1: '',
+      toAddressLine2: '',
+      toAddressCity: '',
+      toAddressState: '',
+      toAddressZip: '',
     };
   }
 
@@ -20,7 +26,73 @@ export default class Form extends Component {
       <form>
         <Grid>
           <Row>
-            <Col xs={12} md={6}>
+            <Col md={6}>
+              <div className="text-left">To:</div>
+              <FormGroup>
+                <FormControl
+                  type="text"
+                  value={this.state.toName}
+                  placeholder="Name"
+                  onChange={(event) => { this.setState({ toName: event.target.value }) }}
+                />
+              </FormGroup>
+              <FormGroup>
+                <FormControl
+                  type="text"
+                  value={this.state.toAddressLine1}
+                  placeholder="Address Line 1"
+                  onChange={(event) => { this.setState({ toAddressLine1: event.target.value }) }}
+                />
+              </FormGroup>
+              <FormGroup>
+
+                <FormControl
+                  type="text"
+                  value={this.state.toAddressLine2}
+                  placeholder="Address Line 2"
+                  onChange={(event) => { this.setState({ toAddressLine2: event.target.value }) }}
+                />
+              </FormGroup>
+
+              <FormGroup>
+
+                <FormControl
+                  type="text"
+                  value={this.state.toAddressCity}
+                  placeholder="City"
+                  onChange={(event) => { this.setState({ toAddressCity: event.target.value }) }}
+                />
+              </FormGroup>
+
+              <Row>
+                <Col md={6}>
+                  <FormGroup>
+
+                    <FormControl
+                      type="text"
+                      value={this.state.toAddressState}
+                      placeholder="State"
+                      onChange={(event) => { this.setState({ toAddressState: event.target.value }) }}
+                    />
+                  </FormGroup>
+
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+
+                    <FormControl
+                      type="text"
+                      value={this.state.toAddressZip}
+                      placeholder="Zip Code"
+                      onChange={(event) => { this.setState({ toAddressZip: event.target.value }) }}
+                    />
+                  </FormGroup>
+
+                </Col>
+              </Row>
+            </Col>
+            <Col md={6}>
+              <div className="text-left">From:</div>
               <FormGroup>
                 <FormControl
                   type="text"
@@ -59,6 +131,7 @@ export default class Form extends Component {
 
               <Row>
                 <Col md={6}>
+                
                   <FormGroup>
 
                     <FormControl
