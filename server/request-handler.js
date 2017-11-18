@@ -2,8 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import cloudinary from './cloudinary/config';
+import multer from 'multer';
 
 const app = express();
+const upload = multer({
+  dest:'/../uploads/'
+});
 
 app.use(express.static(path.join(__dirname, '/../public')));
 
@@ -21,4 +25,4 @@ app.post('/api/cloudinary', (req, res) => {
   res.end('TESTING CLOUDINARY');
 });
 
-export default app;
+module.exports = app;
