@@ -25,4 +25,8 @@ app.post('/api/cloudinary', (req, res) => {
   res.end('TESTING CLOUDINARY');
 });
 
+app.get('/api', (req, res) => {
+  createPostcard();
+});
+
 module.exports = app;
