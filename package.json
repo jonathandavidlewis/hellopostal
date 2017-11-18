@@ -1,0 +1,24 @@
+{
+  "name": "hellopostal",
+  "version": "1.0.0",
+  "description": "Hack Reactor Sponsored Hackathon 2017",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellopostal/hellopostal"
+  },
+  "author": "Ricardo Gallegos, Jonathan Lewis, JP, Heather Park",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VeysonD/hellopostal/issues"
+  },
+  "homepage": "https://github.com/VeysonD/hellopostal#readme"
+}
