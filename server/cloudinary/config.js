@@ -6,6 +6,9 @@ const CLOUDINARY_NAME = process.env.CLOUDINARY_API_NAME;
 
 const uploads = {};
 
+// console.log('Cloudinary key:', CLOUDINARY_KEY);
+// console.log('What are the env variables:', process.env);
+
 cloudinary.config({
   cloud_name: CLOUDINARY_NAME,
   api_key: CLOUDINARY_KEY,
