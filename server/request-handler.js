@@ -1,6 +1,5 @@
-// const express = require('express');
 import express from 'express';
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
 
 const app = express();
 
@@ -12,5 +11,5 @@ app.get('/', (req, res) => {
   res.end('home page');
 });
 
-module.exports = app;
+
 export default app;
