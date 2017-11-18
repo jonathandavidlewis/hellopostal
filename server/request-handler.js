@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
+import cloudinary from './cloudinary/config';
 
 const app = express();
 
@@ -14,5 +15,10 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
+app.post('/api/cloudinary', (req, res) => {
+  console.log('Testing cloudinary POST method:', cloudinary);
+
+  res.end('TESTING CLOUDINARY');
+});
 
 export default app;
