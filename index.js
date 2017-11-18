@@ -1,4 +1,4 @@
-const app = require('server/request-handler.js');
+const app = require('./server/request-handler.js');
 
 const PORT = process.env.PORT || 6060;
 const HOST = process.env.HOST || 'Local host';
