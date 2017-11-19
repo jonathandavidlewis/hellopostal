@@ -44,7 +44,7 @@ const createPostcard = (req, res) => {
         res.send(response);
       } else {
         // for testing, wait for PDF to load to AWS
-        setTimeout(() => res.redirect(response.url), 1000)
+        setTimeout(() => res.redirect(response.url), 1500)
       }
     }
   });
