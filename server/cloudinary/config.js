@@ -15,7 +15,7 @@ cloudinary.config({
   api_secret: CLOUDINARY_SEC
 });
 
-const uploadPhoto = (inputFilePath, title, tags) => {
+const uploadPhoto = (inputFilePath, title) => {
   let retrievedUrl;
   console.log('Upload photo file path:', inputFilePath);
 
