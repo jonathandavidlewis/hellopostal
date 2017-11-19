@@ -20,7 +20,7 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
-app.post('/api/cloud', upload.array('imageFile', 2), (req, res) => {
+app.post('/api/cloud', upload.array('imageFile', 2), (req, res, next) => {
   const photoPath = req.files[0].path;
   const photoName = req.files[0].originalname;
 
@@ -32,13 +32,12 @@ app.post('/api/cloud', upload.array('imageFile', 2), (req, res) => {
   uploadPhoto(photoPath, photoName)
     .then((response) => {
       console.log('What is the response:', response);
+      req.body.imageUrl = response.secure_url;
     })
     .catch((error) => {
       console.error(error);
     });
 
-
-  // res.end('TESTING CLOUDINARY');
   next();
 }, createPostcard);
 
