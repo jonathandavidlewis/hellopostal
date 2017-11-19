@@ -21,9 +21,9 @@ const uploadPhoto = (inputFilePath, title) => {
   return cloudinary.uploader.upload(
     inputFilePath, {
       public_id: title,
-      width: 2000,
-      height: 1000,
-      crop: 'fit',
+      width: 3000,
+      height: 2000,
+      crop: 'fill',
     },
     (error, image) => {
       if (error) {
