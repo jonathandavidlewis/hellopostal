@@ -1,1 +1,78 @@
-<html style="padding: 1in; font-size: 20;">Back HTML for {{name}}</html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
+  <title>Lob.com Thank You 4x6 Postcard Template Back</title>
+  <style>
+    *,
+    *:before,
+    *:after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    @font-face {
+      font-family: 'DragonIsComing';
+      font-style: normal;
+      font-weight: 400;
+      src: url('https://s3-us-west-2.amazonaws.com/lob-assets/Dragon+is+coming.otf') format('opentype');
+    }
+
+    body {
+      width: 6.25in;
+      height: 4.25in;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+
+    /* do not put text outside of the safe area */
+
+    #safe-area {
+      position: absolute;
+      width: 5.875in;
+      height: 3.875in;
+      left: 0.1875in;
+      top: 0.1875in;
+    }
+
+    #message {
+      position: absolute;
+      width: 2.2in;
+      height: 2in;
+      top: 1in;
+      left: .25in;
+      font-family: 'Lato';
+      font-weight: 400;
+      font-size: .122in;
+    }
+
+    #thanks {
+      font-family: 'DragonIsComing';
+      font-size: 1.3in;
+      text-align: center;
+      color: white;
+      background-color: #a2d1f8;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- do not put text outside of the safe area -->
+  <div id="safe-area">
+    <div id="message">
+      <span class="accent">Ami Wang,</span>
+      <br><br>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus at orci sit amet consectetur. Maecenas nec pretium
+      arcu. Vestibulum ac dolor imperdiet, malesuada nibh eget, ullamcorper erat. Nam in tincidunt quam, nec laoreet purus.
+      Vestibulum aliquet consequat laoreet. Nunc ac nisi tincidunt, commodo lorem sed, eleifend tortor.
+      <br>
+      <br> Sincerely,
+      <br> Me
+    </div>
+  </div>
+</body>
+
+</html>
