@@ -29,3 +29,21 @@ h1.app-logo {
 .preview-post-card {
   margin-top: 30px;
 }
+
+.loading {
+  font-family: 'Lato', sans-serif;
+  color: #FFEFB9;
+  font-weight: 700;
+  font-size: 36px;
+  margin: 0 auto;
+}
+
+.vertical-align-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vertical-align-item {
+  max-width: 50%;
+}
