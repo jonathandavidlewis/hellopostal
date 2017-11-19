@@ -8,6 +8,7 @@ nodemailer.createTestAccount((err, account) => {
 
 
   const transporter = nodemailer.createTransport({
+    name: 'ethereal',
     host: 'smtp.ethereal.email',
     port: 587,
     secure: false,
@@ -16,15 +17,14 @@ nodemailer.createTestAccount((err, account) => {
       pass: account.pass,
     },
   }, {
-    from: 'HelloPostal <no-reply@pangalink.net>',
+    from: 'HelloPostal <no-reply@hellopostal.net>',
   });
 
   const mailOptions = {
-    // from: 'Rick',
-    to: 'duulketariakan@yahoo.com',
-    subject: 'I\'m hungry',
-    text: 'Testing2',
-    html: '<div>This is a div</div>',
+    from: 'HelloPostal',
+    to: 'recipient@yahoo.com',
+    subject: 'Your HelloPostal Card',
+    text: 'Your card is on its way!',
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -33,6 +33,7 @@ nodemailer.createTestAccount((err, account) => {
     }
     console.log(`Message sent: ${info.messageId}`);
     console.log(`Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
-    return 'test';
+    return 'sent';
   });
+  return 'end';
 });
