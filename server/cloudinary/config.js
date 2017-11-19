@@ -6,9 +6,6 @@ const CLOUDINARY_NAME = process.env.CLOUDINARY_API_NAME;
 
 const uploads = {};
 
-// console.log('Cloudinary key:', CLOUDINARY_KEY);
-// console.log('What are the env variables:', process.env);
-
 cloudinary.config({
   cloud_name: CLOUDINARY_NAME,
   api_key: CLOUDINARY_KEY,
@@ -19,24 +16,24 @@ const uploadPhoto = (inputFilePath, title) => {
   let retrievedUrl;
   console.log('Upload photo file path:', inputFilePath);
 
+  const waitForAllUploads = (id, error, image) => {
+    uploads[id] = image;
+    console.log('Uploaded image to Cloudinary:', uploads[id]);
+    console.log('Unique cloudinary image url (not secure):', uploads[id].url);
+    return uploads[id].url;
+  };
+
   return cloudinary.uploader.upload(inputFilePath, {
     public_id: title,
     width: 2000,
     height: 1000,
     crop: "fit",
   },
-  errorHandler((error, image) => {
+  (error, image) => {
     if (error) {
       console.error('Cloudinary error:', error);
     }
     waitForAllUploads(inputFilePath, error, image);
-  }));
-
-  waitForAllUploads((id, error, image) => {
-    uploads[id] = image;
-    console.log('Uploaded image to Cloudinary:', uploads[id]);
-    console.log('Unique cloudinary image url (not secure):', uploads[id].url);
-    return uploads[id].url;
   });
 
 };
