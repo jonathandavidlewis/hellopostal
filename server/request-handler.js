@@ -2,8 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import multer from 'multer';
-import { createPostcard } from './lob';
-import { uploadPhoto } from './cloudinary/config';
+import { uploadCloud } from './routes/cloudinary';
+import { createPostcard } from './routes/lob';
+
 
 const app = express();
 const upload = multer({
@@ -20,19 +21,7 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
-app.post('/api/cloud', upload.array('imageFile', 2), (req, res, next) => {
-  const photoPath = req.files[0].path;
-  const photoName = req.files[0].originalname;
-
-  uploadPhoto(photoPath, photoName)
-    .then((response) => {
-      req.body.imageUrl = response.secure_url;
-      next();
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}, createPostcard);
+app.post('/api/cloud', upload.array('imageFile', 2), uploadCloud, createPostcard);
 
 app.get('/api/lob', createPostcard);
 
