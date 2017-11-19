@@ -3,3 +3,23 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+h1.app-logo {
+  margin: 0;
+  font-size: 24px;
+  font: 400 72px/1.5 'Pacifico', Helvetica, sans-serif;
+  color: #FFEFB9;
+}
+
+.logo-header {
+  margin-bottom: 20px;
+}
+
+.app-chrome {
+  min-height:100vh;
+  background-image: linear-gradient(45deg, #941F1F, #CE6B5D);
+  /*background-image: -webkit-linear-gradient(45deg, #361752, #B31B67);
+  background-image: -moz-linear-gradient(45deg, #361752, #B31B67);
+  background-image: -ms-linear-gradient(45deg, #361752, #B31B67);
+  background-image: -o-linear-gradient(45deg, #361752, #B31B67);*/
+}
