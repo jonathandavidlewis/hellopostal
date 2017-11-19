@@ -5,11 +5,12 @@ import {
   RECEIVE_CONFIRMATION
 } from '../actions/actions.js';
 
-const confirmation = (state = { data: null }, action) => {
+const confirmation = (state = { status: null, data: null }, action) => {
   switch (action.type) {
     case RECEIVE_CONFIRMATION:
       return {
         ...state,
+        status: action.status,
         data: action.data
       }
     default:

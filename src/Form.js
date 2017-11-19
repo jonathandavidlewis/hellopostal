@@ -45,14 +45,12 @@ class Form extends Component {
       '/api/cloud/',
       fd,
       { headers: {'Content-type': 'multipart/form-data'} }
-    )
-      .then((response)=> {
-        console.log('form post success');
-        dispatch(receiveConfirmation(response.data));
-        setTimeout(() => history.push('/confirmation'), 5000)
-        // setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
-      })
-    .catch((err) => console.error(err));
+    ).then((response)=> {
+      console.log('form post success');
+      dispatch(receiveConfirmation(response.status, response.data));
+      setTimeout(() => history.push('/confirmation'), 5000)
+      // setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
+    }).catch((err) => console.error(err));
   }
 
   render() {

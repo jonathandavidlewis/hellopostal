@@ -8,7 +8,8 @@ export const changeFormField = (fieldName, fieldValue) => ({
 
 export const RECEIVE_CONFIRMATION = 'RECEIVE_CONFIRMATION';
 
-export const receiveConfirmation = (data) => ({
+export const receiveConfirmation = (status, data) => ({
   type: RECEIVE_CONFIRMATION,
+  status,
   data
 });
