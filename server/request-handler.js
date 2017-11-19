@@ -31,8 +31,8 @@ app.post('/api/cloud', upload.array('imageFile', 2), (req, res) => {
   //   cloudConfig.uploadPhoto(photoPathFor)
   // })
 
-  res.end('TESTING CLOUDINARY');
-});
+  // res.end('TESTING CLOUDINARY');
+}, createPostcard);
 
 app.get('/api/lob', createPostcard);
 
