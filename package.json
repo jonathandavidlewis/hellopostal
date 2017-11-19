@@ -25,6 +25,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.5.0",
     "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -32,8 +33,9 @@
     "eslint-plugin-react": "^7.5.0"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node index.js",
-    "start": "react-scripts start",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon --exec babel-node index.js",
+    "client": "react-scripts start",
     "start:1": "babel-node index.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -48,5 +50,6 @@
   "bugs": {
     "url": "https://github.com/VeysonD/hellopostal/issues"
   },
-  "homepage": "https://github.com/VeysonD/hellopostal#readme"
+  "homepage": "https://github.com/VeysonD/hellopostal#readme",
+  "proxy": "http://localhost:6060"
 }

@@ -20,8 +20,8 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
-app.post('/api/cloudinary', (req, res) => {
-  console.log('Testing cloudinary POST method:', cloudinary);
+app.post('/api/cloud/', (req, res) => {
+  console.log('Testing cloudinary POST method:', req);
 
   res.end('TESTING CLOUDINARY');
 });
