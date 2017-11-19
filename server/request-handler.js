@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-import cloudinary from './cloudinary/config';
 import multer from 'multer';
 import { createPostcard } from './lob';
+import { cloudinary, uploadPhoto } from './cloudinary/config';
 
 const app = express();
 const upload = multer({
@@ -20,8 +20,16 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
-app.post('/api/cloud/', (req, res) => {
-  console.log('Testing cloudinary POST method:', req);
+app.post('/api/cloud', upload.array('imageFile', 2), (req, res) => {
+  const photoData = req.files;
+  console.log('Running');
+  // console.log('Cloudinary req:', req);
+  console.log('Cloudinary photoData:', req.files);
+  console.log('Cloudinary request:', req);
+
+  // return new Promise(function(resolve, reject) {
+  //   cloudConfig.uploadPhoto(photoPathFor)
+  // })
 
   res.end('TESTING CLOUDINARY');
 });
