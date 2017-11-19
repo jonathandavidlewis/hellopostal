@@ -3,11 +3,11 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import multer from 'multer';
 import { createPostcard } from './lob';
-import { cloudinary, uploadPhoto } from './cloudinary/config';
+import { uploadPhoto } from './cloudinary/config';
 
 const app = express();
 const upload = multer({
-  dest: path.join(__dirname, '/../uploads/')
+  dest: path.join(__dirname, '/../uploads/'),
 });
 
 app.use(express.static(path.join(__dirname, '/../public')));
@@ -24,22 +24,14 @@ app.post('/api/cloud', upload.array('imageFile', 2), (req, res, next) => {
   const photoPath = req.files[0].path;
   const photoName = req.files[0].originalname;
 
-  console.log('Running');
-  console.log('Cloudinary photoData:', req.files[0]);
-  console.log('Cloudinary photoName:', photoName);
-
-
   uploadPhoto(photoPath, photoName)
     .then((response) => {
-      console.log('What is the response:', response);
       req.body.imageUrl = response.secure_url;
       next();
     })
     .catch((error) => {
       console.error(error);
     });
-
-
 }, createPostcard);
 
 app.get('/api/lob', createPostcard);
