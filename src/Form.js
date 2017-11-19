@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Col, Row, Grid, Button } from 'react-bootstrap'
 import axios from 'axios';
 import { receiveConfirmation } from './actions/actions.js';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class Form extends Component {
   constructor() {
@@ -30,7 +31,7 @@ class Form extends Component {
   }
 
   handleSubmit(e) {
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
 
     e.preventDefault();
 
@@ -64,8 +65,9 @@ class Form extends Component {
     )
       .then((response)=> {
         console.log('form post success');
-        dispatch(receiveConfirmation(response));
-        setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
+        dispatch(receiveConfirmation(response.data));
+        setTimeout(() => history.push('/confirmation'), 5000)
+        // setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
       })
     .catch((err) => console.error(err));
   }
@@ -213,4 +215,4 @@ class Form extends Component {
   }
 }
 
-export default connect()(Form)
+export default withRouter(connect()(Form));
