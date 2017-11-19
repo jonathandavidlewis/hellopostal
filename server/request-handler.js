@@ -3,11 +3,18 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cloudinary from './cloudinary/config';
 import multer from 'multer';
+import createPostcard from './lob';
 
 const app = express();
+<<<<<<< HEAD
 const upload = multer({
   dest: path.join(__dirname,'/../uploads/')
 });
+=======
+// const upload = multer({
+//   dest:'/../uploads/'
+// });
+>>>>>>> Sends lob request on GET to /api
 
 app.use(express.static(path.join(__dirname, '/../public')));
 
@@ -25,8 +32,6 @@ app.post('/api/cloudinary', (req, res) => {
   res.end('TESTING CLOUDINARY');
 });
 
-app.get('/api', (req, res) => {
-  createPostcard();
-});
+app.get('/api', createPostcard);
 
 module.exports = app;

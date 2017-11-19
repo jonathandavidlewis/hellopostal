@@ -2,16 +2,16 @@ const { LOB_API_KEY } = process.env;
 const Lob = require('lob')(LOB_API_KEY);
 console.log('API KEY', process.env.LOB_API_KEY);
 
-const demoRequest = () => {
+const demoRequest = (req, res) => {
   Lob.postcards.create({
     description: 'Demo Postcard job',
     to: {
-      name: 'Mr. Demo',
-      address_line1: '123 HR Lane',
-      address_line2: '# 6100',
+      name: 'HR San Francisco',
+      address_line1: '944 Market Street',
+      address_line2: '8th floor',
       address_city: 'San Francisco',
       address_state: 'CA',
-      address_zip: '94107',
+      address_zip: '94102',
     },
     from: {
       name: 'Hello Postcard Team',
@@ -26,12 +26,12 @@ const demoRequest = () => {
     merge_variables: {
       name: 'Jonathan',
     },
-  }, (err, res) => {
+  }, (err, response) => {
     if (err) {
       console.log(err);
     } else {
-      console.log('Sucessfully sent postcard, Response:', res);
-      res.end(`Sucessfully sent postcard, Response: ${res}`);
+      console.log('Sucessfully sent postcard, Response:', response);
+      res.redirect(response.url);
     }
   });
 };
