@@ -20,7 +20,7 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
-app.post('/api/cloud', upload.array('imageFile', 2), (req, res) => {
+app.post('/api/cloud', upload.array('imageFile', 2), (req, res, next) => {
   const photoData = req.files;
   console.log('Running');
   // console.log('Cloudinary req:', req);
@@ -31,8 +31,9 @@ app.post('/api/cloud', upload.array('imageFile', 2), (req, res) => {
   //   cloudConfig.uploadPhoto(photoPathFor)
   // })
 
-  res.end('TESTING CLOUDINARY');
-});
+  // res.end('TESTING CLOUDINARY');
+  next();
+}, createPostcard);
 
 app.get('/api/lob', createPostcard);
 
