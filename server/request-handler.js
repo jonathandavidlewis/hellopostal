@@ -20,10 +20,26 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
-app.post('/api/cloud', upload.array('file', 4), (req, res) => {
+// app.post('/api/cloud', upload.array('file', 4), (req, res) => {
+//   const photoData = req.files;
+//   console.log('Running');
+//   // console.log('Cloudinary req:', req);
+//   console.log('Cloudinary photoData:', req.files);
+//   console.log('Cloudinary request:', req);
+//
+//   // return new Promise(function(resolve, reject) {
+//   //   cloudConfig.uploadPhoto(photoPathFor)
+//   // })
+//
+//   res.end('TESTING CLOUDINARY');
+// });
+
+app.post('/api/cloud', upload.single('file'), (req, res) => {
   const photoData = req.files;
-  console.log('Cloudinary req:', req);
+  console.log('Running');
+  // console.log('Cloudinary req:', req);
   console.log('Cloudinary photoData:', req.files);
+  console.log('Cloudinary request:', req);
 
   // return new Promise(function(resolve, reject) {
   //   cloudConfig.uploadPhoto(photoPathFor)

@@ -191,6 +191,7 @@ export default class Form extends Component {
               <FormGroup>
                 <FormControl
                   type="file"
+                  name="file"
                   onChange={(event) => {
                     this.setState({ imageFile: event.target.files[0] });
                   }}
