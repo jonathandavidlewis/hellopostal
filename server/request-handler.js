@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cloudinary from './cloudinary/config';
 import multer from 'multer';
-import createPostcard from './lob';
+import { createPostcard, createPostcardTest } from './lob';
 
 const app = express();
 <<<<<<< HEAD
@@ -32,6 +32,6 @@ app.post('/api/cloudinary', (req, res) => {
   res.end('TESTING CLOUDINARY');
 });
 
-app.get('/api', createPostcard);
+app.use('/api/lob', createPostcard);
 
 module.exports = app;
