@@ -44,8 +44,11 @@ const createPostcard = (req, res) => {
     front: frontTemplate,
     back: backTemplate,
     merge_variables: {
-      name: toName || 'Jonathan',
-      message: toMessage || 'Happy Holidays!',
+      to_name: toName || 'Jonathan',
+      from_name: fromName || 'Jessica',
+      message: toMessage || `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus at orci sit amet consectetur. Maecenas nec pretium
+ +      arcu. Vestibulum ac dolor imperdiet, malesuada nibh eget, ullamcorper erat. Nam in tincidunt quam, nec laoreet purus.
+ +      Vestibulum aliquet consequat laoreet. Nunc ac nisi tincidunt, commodo lorem sed, eleifend tortor.`,
       image: imageUrl || 'https://jingping-ji.squarespace.com/s/pexels-photo-188971.jpeg',
     },
   }, (err, response) => {
