@@ -33,12 +33,13 @@ app.post('/api/cloud', upload.array('imageFile', 2), (req, res, next) => {
     .then((response) => {
       console.log('What is the response:', response);
       req.body.imageUrl = response.secure_url;
+      next();
     })
     .catch((error) => {
       console.error(error);
     });
 
-  next();
+
 }, createPostcard);
 
 app.get('/api/lob', createPostcard);
