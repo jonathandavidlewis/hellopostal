@@ -1,11 +1,9 @@
 const { LOB_API_KEY } = process.env;
 const Lob = require('lob')(LOB_API_KEY);
-console.log('API KEY', process.env.LOB_API_KEY);
 const fs = require('fs');
 const path = require('path');
 const frontTemplate = fs.readFileSync('./server/front-template.html', 'utf8');
 const backTemplate = fs.readFileSync('./server/back-template.html', 'utf8');
-console.log(frontTemplate);
 
 
 const createPostcard = (req, res) => {
@@ -44,7 +42,7 @@ const createPostcard = (req, res) => {
         res.send(response);
       } else {
         // for testing, wait for PDF to load to AWS
-        setTimeout(() => res.redirect(response.url), 1500)
+        setTimeout(() => res.redirect(response.url), 3000)
       }
     }
   });

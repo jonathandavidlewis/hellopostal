@@ -58,7 +58,7 @@ export default class Form extends Component {
       fd,
       { headers: {'Content-type': 'multipart/form-data'} }
     )
-    .then(()=> console.log('uploadFile success'))
+    .then(()=> console.log('form post success'))
     .catch((err) => console.error(err));
   }
 
