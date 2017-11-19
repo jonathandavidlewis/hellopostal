@@ -26,6 +26,6 @@ app.post('/api/cloud/', (req, res) => {
   res.end('TESTING CLOUDINARY');
 });
 
-app.get('/api', createPostcard);
+app.get('/api/lob', createPostcard);
 
 module.exports = app;
