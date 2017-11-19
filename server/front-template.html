@@ -1,1 +1,59 @@
-<html style="padding: 1in; font-size: 50;">Front HTML for {{name}}</html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+<title>Lob.com Real Estate Just Sold 4x6 Postcard Template Front</title>
+<style>
+  *, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  body {
+    width: 6.25in;
+    height: 4.25in;
+    margin: 0;
+    padding: 0;
+    /* your background image should have dimensions of 1875x1275 pixels. */
+    background-image: url('https://jingping-ji.squarespace.com/s/pexels-photo-188971.jpeg');
+    background-size: 6.25in 4.25in;
+    background-repeat: no-repeat;
+  }
+  /* do not put text outside of the safe area */
+  #safe-area {
+    position: absolute;
+    width: 5.875in;
+    height: 3.875in;
+    left: 0.1875in;
+    top: 0.1875in;
+  }
+
+  #logo {
+    height: .9in;
+    position: absolute;
+    bottom: .1in;
+    left: .13in;
+  }
+  #main-greeting {
+    font-family: 'Source Sans Pro';
+    font-weight: 700;
+    font-size: .25in;
+    text-transform: uppercase;
+    position: absolute;
+    left: 1.85in;
+    top: 3.1in;
+    color: white;
+  }
+</style>
+</head>
+
+<body>
+  <!-- do not put text outside of the safe area -->
+  <div id="safe-area">
+    <div id="main-greeting">
+      Happy Holidays {{name}}!
+    </div>
+  </div>
+</body>
+
+</html>
