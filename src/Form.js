@@ -1,5 +1,7 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { FormControl, FormGroup, Col, Row, Grid, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 export default class Form extends Component {
   constructor() {
@@ -27,6 +29,37 @@ export default class Form extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    const FieldNames = [
+      'fromName',
+      'fromAddressLine1',
+      'fromAddressLine2',
+      'fromAddressCity',
+      'fromAddressState',
+      'fromAddressZip',
+      'toName',
+      'toAddressLine1',
+      'toAddressLine2',
+      'toAddressCity',
+      'toAddressState',
+      'toAddressZip',
+      'toMessage',
+      'imageFile'
+    ]
+
+    let fd = new FormData()
+
+    _.each(FieldNames, (field) => {
+      fd.append(field, this.state[field])
+    })
+
+    axios.post(
+      '/api/cloud/',
+      fd,
+      { headers: {'Content-type': 'multipart/form-data'} }
+    )
+    .then(()=> console.log('uploadFile success'))
+    .catch((err) => console.error(err));
   }
 
   render() {
@@ -163,7 +196,7 @@ export default class Form extends Component {
                   }}
                 />
               </FormGroup>
-              <Button type="submit">Submit</Button>
+              <Button className="pull-right" type="submit">Submit</Button>
             </Col>
           </Row>
         </Grid>
@@ -171,4 +204,3 @@ export default class Form extends Component {
     )
   }
 }
-
