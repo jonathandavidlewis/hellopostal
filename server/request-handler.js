@@ -20,7 +20,7 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
-app.post('/api/cloud', upload.array('imageFile', 4), (req, res) => {
+app.post('/api/cloud', upload.array('imageFile', 2), (req, res) => {
   const photoData = req.files;
   console.log('Running');
   // console.log('Cloudinary req:', req);
