@@ -1,6 +1,12 @@
 import nodemailer from 'nodemailer';
 
 nodemailer.createTestAccount((err, account) => {
+  if (err) {
+    console.error('Failed to create a testing account');
+    return console.error(err);
+  }
+
+
   const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
@@ -9,12 +15,15 @@ nodemailer.createTestAccount((err, account) => {
       user: account.user,
       pass: account.pass,
     },
+  }, {
+    from: 'HelloPostal <no-reply@pangalink.net>',
   });
 
   const mailOptions = {
-    from: 'Rick',
-    to: 'Jonathan',
-    subject: 'I"m hungry',
+    // from: 'Rick',
+    to: 'duulketariakan@yahoo.com',
+    subject: 'I\'m hungry',
+    text: 'Testing2',
     html: '<div>This is a div</div>',
   };
 
