@@ -21,30 +21,32 @@ const createPostcard = (req, res) => {
     toAddressState,
     toAddressZip,
     toMessage,
-} = req.body;
+    imageUrl,
+  } = req.body;
   Lob.postcards.create({
     description: 'Demo Postcard job',
     to: {
-      name: fromName || 'HR San Francisco',
-      address_line1: fromAddressLine1 || '944 Market Street',
-      address_line2: fromAddressLine2,
-      address_city: fromAddressCity || 'San Francisco',
-      address_state: fromAddressState || 'CA',
-      address_zip: fromAddressZip || '94102',
+      name: toName || 'HR San Francisco',
+      address_line1: toAddressLine1 || '944 Market Street',
+      address_line2: toAddressLine2,
+      address_city: toAddressCity || 'San Francisco',
+      address_state: toAddressState || 'CA',
+      address_zip: toAddressZip || '94102',
     },
     from: {
-      name: toName || 'Hello Postcard Team',
-      address_line1: toAddressLine1 || '6060 Center Dr',
-      address_line2: toAddressLine2 || '#950',
-      address_city: toAddressCity || 'Los Angeles',
-      address_state: toAddressState || 'CA',
-      address_zip: toAddressZip || '90045',
+      name: fromName || 'Hello Postcard Team',
+      address_line1: fromAddressLine1 || '6060 Center Dr',
+      address_line2: fromAddressLine2 || '#950',
+      address_city: fromAddressCity || 'Los Angeles',
+      address_state: fromAddressState || 'CA',
+      address_zip: fromAddressZip || '90045',
     },
     front: frontTemplate,
     back: backTemplate,
     merge_variables: {
       name: toName || 'Jonathan',
       message: toMessage || 'Happy Holidays!',
+      image: imageUrl || 'https://jingping-ji.squarespace.com/s/pexels-photo-188971.jpeg',
     },
   }, (err, response) => {
     if (err) {
@@ -58,7 +60,7 @@ const createPostcard = (req, res) => {
         res.send(response);
       } else {
         // for testing, wait for PDF to load to AWS
-        setTimeout(() => res.redirect(response.url), 3000)
+        setTimeout(() => res.redirect(response.url), 3000);
       }
     }
   });
