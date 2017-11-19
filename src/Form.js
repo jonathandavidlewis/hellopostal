@@ -52,7 +52,7 @@ export default class Form extends Component {
     _.each(FieldNames, (field) => {
       fd.append(field, this.state[field])
     })
-
+    console.log('what is in fd:', fd.get('imageFile'));
     axios.post(
       '/api/cloud/',
       fd,
@@ -191,7 +191,6 @@ export default class Form extends Component {
               <FormGroup>
                 <FormControl
                   type="file"
-                  name="file"
                   onChange={(event) => {
                     this.setState({ imageFile: event.target.files[0] });
                   }}

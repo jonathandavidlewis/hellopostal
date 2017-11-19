@@ -34,7 +34,7 @@ app.get('/home', (req, res) => {
 //   res.end('TESTING CLOUDINARY');
 // });
 
-app.post('/api/cloud', upload.single('file'), (req, res) => {
+app.post('/api/cloud', upload.single('imageFile'), (req, res) => {
   const photoData = req.files;
   console.log('Running');
   // console.log('Cloudinary req:', req);
