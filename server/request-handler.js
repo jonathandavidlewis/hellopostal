@@ -3,11 +3,11 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import multer from 'multer';
 import { createPostcard } from './lob';
-import { cloudinary, uploadPhoto } from './cloudinary/config';
+import { uploadPhoto } from './cloudinary/config';
 
 const app = express();
 const upload = multer({
-  dest: path.join(__dirname, '/../uploads/')
+  dest: path.join(__dirname, '/../uploads/'),
 });
 
 app.use(express.static(path.join(__dirname, '/../public')));
@@ -21,18 +21,17 @@ app.get('/home', (req, res) => {
 });
 
 app.post('/api/cloud', upload.array('imageFile', 2), (req, res, next) => {
-  const photoData = req.files;
-  console.log('Running');
-  // console.log('Cloudinary req:', req);
-  console.log('Cloudinary photoData:', req.files);
-  console.log('Cloudinary request:', req);
+  const photoPath = req.files[0].path;
+  const photoName = req.files[0].originalname;
 
-  // return new Promise(function(resolve, reject) {
-  //   cloudConfig.uploadPhoto(photoPathFor)
-  // })
-
-  // res.end('TESTING CLOUDINARY');
-  next();
+  uploadPhoto(photoPath, photoName)
+    .then((response) => {
+      req.body.imageUrl = response.secure_url;
+      next();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }, createPostcard);
 
 app.get('/api/lob', createPostcard);

@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "nodemon --watch server -e js,html --exec babel-node index.js",
+    "server": "nodemon --watch server -e js,html --exec babel-node index.js --inspect",
     "client": "react-scripts start",
     "start:1": "babel-node index.js",
     "build": "react-scripts build",
