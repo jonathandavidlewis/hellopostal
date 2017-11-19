@@ -58,7 +58,10 @@ export default class Form extends Component {
       fd,
       { headers: {'Content-type': 'multipart/form-data'} }
     )
-    .then(()=> console.log('form post success'))
+      .then((response)=> {
+        console.log('form post success');
+        setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
+      })
     .catch((err) => console.error(err));
   }
 
