@@ -25,3 +25,7 @@ h1.app-logo {
   background-image: -ms-linear-gradient(45deg, #941F1F, #CE6B5D);
   background-image: -o-linear-gradient(45deg, #941F1F, #CE6B5D);
 }
+
+.preview-post-card {
+  margin-top: 30px;
+}

@@ -2,6 +2,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import {
   CHANGE_FORM_FIELD,
+  CLEAR_TO_FIELDS,
   RECEIVE_CONFIRMATION
 } from '../actions/actions.js';
 
@@ -37,10 +38,27 @@ const form = (state = {
   }
 }, action) => {
   switch (action.type) {
-    case CHANGE_FORM_FIELD:{
+    case CHANGE_FORM_FIELD: {
       const formData = state.formData
       formData[action.fieldName] = action.fieldValue
 
+      return {
+        ...state,
+        formData
+      }
+    }
+    case CLEAR_TO_FIELDS:{
+      const formData = {
+        ...state.formData,
+        toName: '',
+        toAddressLine1: '',
+        toAddressLine2: '',
+        toAddressCity: '',
+        toAddressState: '',
+        toAddressZip: '',
+        toMessage: '',
+        imageFile: ''
+      }
       return {
         ...state,
         formData
