@@ -2,8 +2,11 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { FormControl, FormGroup, Col, Row, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { receiveConfirmation } from './actions/actions.js';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-export default class Form extends Component {
+class Form extends Component {
   constructor() {
     super();
 
@@ -28,6 +31,8 @@ export default class Form extends Component {
   }
 
   handleSubmit(e) {
+    const { dispatch, history } = this.props;
+
     e.preventDefault();
 
     const FieldNames = [
@@ -60,7 +65,9 @@ export default class Form extends Component {
     )
       .then((response)=> {
         console.log('form post success');
-        setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
+        dispatch(receiveConfirmation(response.data));
+        setTimeout(() => history.push('/confirmation'), 5000)
+        // setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
       })
     .catch((err) => console.error(err));
   }
@@ -207,3 +214,5 @@ export default class Form extends Component {
     )
   }
 }
+
+export default withRouter(connect()(Form));
