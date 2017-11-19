@@ -3,6 +3,10 @@ node_modules/
 
 #System files
 .DS_Store
+npm-debug.log
 
 #Environmental variables
 .env
+
+#Built files
+build/
