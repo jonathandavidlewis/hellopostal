@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cloudinary from './cloudinary/config';
 import multer from 'multer';
-import createPostcard from './lob';
+import { createPostcard } from './lob';
 
 const app = express();
 const upload = multer({
