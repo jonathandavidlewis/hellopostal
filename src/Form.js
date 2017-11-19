@@ -52,7 +52,7 @@ export default class Form extends Component {
     _.each(FieldNames, (field) => {
       fd.append(field, this.state[field])
     })
-    console.log('what is in fd:', fd.get('imageFile'));
+
     axios.post(
       '/api/cloud/',
       fd,
