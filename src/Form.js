@@ -71,7 +71,7 @@ export default class Form extends Component {
         <Grid>
           <Row>
             <Col md={6}>
-              <div className="text-left">To:</div>
+              <h3 className="text-left">To:</h3>
               <FormGroup>
                 <FormControl
                   type="text"
@@ -136,7 +136,7 @@ export default class Form extends Component {
               </FormGroup>
             </Col>
             <Col md={6}>
-              <div className="text-left">From:</div>
+              <h3 className="text-left">From:</h3>
               <FormGroup>
                 <FormControl
                   type="text"
