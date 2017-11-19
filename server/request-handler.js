@@ -7,7 +7,7 @@ import { cloudinary, uploadPhoto } from './cloudinary/config';
 
 const app = express();
 const upload = multer({
-  dest: path.join(__dirname,'/../uploads/')
+  dest: path.join(__dirname, '/../uploads/')
 });
 
 app.use(express.static(path.join(__dirname, '/../public')));

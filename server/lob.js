@@ -1,34 +1,55 @@
 const { LOB_API_KEY } = process.env;
 const Lob = require('lob')(LOB_API_KEY);
 const fs = require('fs');
-const path = require('path');
+
 const frontTemplate = fs.readFileSync('./server/front-template.html', 'utf8');
 const backTemplate = fs.readFileSync('./server/back-template.html', 'utf8');
 
 
 const createPostcard = (req, res) => {
+  const {
+    fromName,
+    fromAddressLine1,
+    fromAddressLine2,
+    fromAddressCity,
+    fromAddressState,
+    fromAddressZip,
+    toName,
+    toAddressLine1,
+    toAddressLine2,
+    toAddressCity,
+    toAddressState,
+    toAddressZip,
+    toMessage,
+    imageUrl,
+  } = req.body;
   Lob.postcards.create({
     description: 'Demo Postcard job',
     to: {
-      name: 'HR San Francisco',
-      address_line1: '944 Market Street',
-      address_line2: '8th floor',
-      address_city: 'San Francisco',
-      address_state: 'CA',
-      address_zip: '94102',
+      name: toName || 'HR San Francisco',
+      address_line1: toAddressLine1 || '944 Market Street',
+      address_line2: toAddressLine2,
+      address_city: toAddressCity || 'San Francisco',
+      address_state: toAddressState || 'CA',
+      address_zip: toAddressZip || '94102',
     },
     from: {
-      name: 'Hello Postcard Team',
-      address_line1: '6060 Center Dr',
-      address_line2: '#950',
-      address_city: 'Los Angeles',
-      address_state: 'CA',
-      address_zip: '90045',
+      name: fromName || 'Hello Postcard Team',
+      address_line1: fromAddressLine1 || '6060 Center Dr',
+      address_line2: fromAddressLine2 || '#950',
+      address_city: fromAddressCity || 'Los Angeles',
+      address_state: fromAddressState || 'CA',
+      address_zip: fromAddressZip || '90045',
     },
     front: frontTemplate,
     back: backTemplate,
     merge_variables: {
-      name: 'Jonathan',
+      to_name: toName || 'Jonathan',
+      from_name: fromName || 'Jessica',
+      message: toMessage || `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus at orci sit amet consectetur. Maecenas nec pretium
+ +      arcu. Vestibulum ac dolor imperdiet, malesuada nibh eget, ullamcorper erat. Nam in tincidunt quam, nec laoreet purus.
+ +      Vestibulum aliquet consequat laoreet. Nunc ac nisi tincidunt, commodo lorem sed, eleifend tortor.`,
+      image: imageUrl || 'https://jingping-ji.squarespace.com/s/pexels-photo-188971.jpeg',
     },
   }, (err, response) => {
     if (err) {
@@ -42,7 +63,7 @@ const createPostcard = (req, res) => {
         res.send(response);
       } else {
         // for testing, wait for PDF to load to AWS
-        setTimeout(() => res.redirect(response.url), 3000)
+        setTimeout(() => res.redirect(response.url), 3000);
       }
     }
   });
