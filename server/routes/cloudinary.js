@@ -1,4 +1,4 @@
-import { uploadPhoto } from './../cloudinary/config';
+import { uploadPhoto } from './../utility/cloudinary/config';
 
 exports.uploadCloud = (req, res, next) => {
   const photoPath = req.files[0].path;

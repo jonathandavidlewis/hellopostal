@@ -2,8 +2,8 @@ const { LOB_API_KEY } = process.env;
 const Lob = require('lob')(LOB_API_KEY);
 const fs = require('fs');
 
-const frontTemplate = fs.readFileSync('./server/front-template.html', 'utf8');
-const backTemplate = fs.readFileSync('./server/back-template.html', 'utf8');
+const frontTemplate = fs.readFileSync('./server/assets/front-template.html', 'utf8');
+const backTemplate = fs.readFileSync('./server/assets/back-template.html', 'utf8');
 
 
 const createPostcard = (req, res) => {
