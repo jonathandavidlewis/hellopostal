@@ -14,12 +14,9 @@ cloudinary.config({
 
 const uploadPhoto = (inputFilePath, title) => {
   let retrievedUrl;
-  console.log('Upload photo file path:', inputFilePath);
 
   const waitForAllUploads = (id, error, image) => {
     uploads[id] = image;
-    console.log('Uploaded image to Cloudinary:', uploads[id]);
-    console.log('Unique cloudinary image url (not secure):', uploads[id].url);
     return uploads[id].url;
   };
 
