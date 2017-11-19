@@ -6,7 +6,7 @@ import { Image } from 'react-bootstrap';
 class Confirmation extends Component {
   render() {
     const { confirmation } = this.props;
-    let display = (<div>No data</div>);
+    let display = null;
 
     if (confirmation.data !== null) {
       display = (
