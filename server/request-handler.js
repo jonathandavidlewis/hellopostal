@@ -6,7 +6,7 @@ import multer from 'multer';
 
 const app = express();
 const upload = multer({
-  dest:'/../uploads/'
+  dest: path.join(__dirname,'/../uploads/')
 });
 
 app.use(express.static(path.join(__dirname, '/../public')));
