@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { FormControl, FormGroup, Col, Row, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { receiveConfirmation } from './actions/actions.js';
+import { receiveConfirmation, changeFormField } from './actions/actions.js';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -10,28 +10,11 @@ class Form extends Component {
   constructor() {
     super();
 
-    this.state = {
-      fromName: '',
-      fromAddressLine1: '',
-      fromAddressLine2: '',
-      fromAddressCity: '',
-      fromAddressState: '',
-      fromAddressZip: '',
-      toName: '',
-      toAddressLine1: '',
-      toAddressLine2: '',
-      toAddressCity: '',
-      toAddressState: '',
-      toAddressZip: '',
-      toMessage: '',
-      imageFile: ''
-    };
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
-    const { dispatch, history } = this.props;
+    const { form: { formData }, dispatch, history } = this.props;
 
     e.preventDefault();
 
@@ -55,24 +38,24 @@ class Form extends Component {
     let fd = new FormData()
 
     _.each(FieldNames, (field) => {
-      fd.append(field, this.state[field])
+      fd.append(field, formData[field])
     })
 
     axios.post(
       '/api/cloud/',
       fd,
       { headers: {'Content-type': 'multipart/form-data'} }
-    )
-      .then((response)=> {
-        console.log('form post success');
-        dispatch(receiveConfirmation(response.data));
-        setTimeout(() => history.push('/confirmation'), 5000)
-        // setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
-      })
-    .catch((err) => console.error(err));
+    ).then((response)=> {
+      console.log('form post success');
+      dispatch(receiveConfirmation(response.status, response.data));
+      setTimeout(() => history.push('/confirmation'), 5000)
+      // setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
+    }).catch((err) => console.error(err));
   }
 
   render() {
+    const { dispatch, form: { formData } } = this.props
+
     return (
       <form onSubmit={this.handleSubmit}>
         <Grid>
@@ -82,33 +65,33 @@ class Form extends Component {
               <FormGroup>
                 <FormControl
                   type="text"
-                  value={this.state.toName}
+                  value={formData.toName}
                   placeholder="Name"
-                  onChange={(event) => { this.setState({ toName: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('toName', event.target.value))}
                 />
               </FormGroup>
               <FormGroup>
                 <FormControl
                   type="text"
-                  value={this.state.toAddressLine1}
+                  value={formData.toAddressLine1}
                   placeholder="Address Line 1"
-                  onChange={(event) => { this.setState({ toAddressLine1: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('toAddressLine1', event.target.value))}
                 />
               </FormGroup>
               <FormGroup>
                 <FormControl
                   type="text"
-                  value={this.state.toAddressLine2}
+                  value={formData.toAddressLine2}
                   placeholder="Address Line 2"
-                  onChange={(event) => { this.setState({ toAddressLine2: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('toAddressLine2', event.target.value))}
                 />
               </FormGroup>
               <FormGroup>
                 <FormControl
                   type="text"
-                  value={this.state.toAddressCity}
+                  value={formData.toAddressCity}
                   placeholder="City"
-                  onChange={(event) => { this.setState({ toAddressCity: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('toAddressCity', event.target.value))}
                 />
               </FormGroup>
               <Row>
@@ -116,9 +99,9 @@ class Form extends Component {
                   <FormGroup>
                     <FormControl
                       type="text"
-                      value={this.state.toAddressState}
+                      value={formData.toAddressState}
                       placeholder="State"
-                      onChange={(event) => { this.setState({ toAddressState: event.target.value }) }}
+                      onChange={(event) => dispatch(changeFormField('toAddressState', event.target.value))}
                     />
                   </FormGroup>
                 </Col>
@@ -126,9 +109,9 @@ class Form extends Component {
                   <FormGroup>
                     <FormControl
                       type="text"
-                      value={this.state.toAddressZip}
+                      value={formData.toAddressZip}
                       placeholder="Zip Code"
-                      onChange={(event) => { this.setState({ toAddressZip: event.target.value }) }}
+                      onChange={(event) => dispatch(changeFormField('toAddressZip', event.target.value))}
                     />
                   </FormGroup>
                 </Col>
@@ -136,9 +119,9 @@ class Form extends Component {
               <FormGroup>
                 <FormControl
                   componentClass="textarea"
-                  value={this.state.toMessage}
+                  value={formData.toMessage}
                   placeholder="Message"
-                  onChange={(event) => { this.setState({ toMessage: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('toMessage', event.target.value))}
                 />
               </FormGroup>
             </Col>
@@ -147,33 +130,33 @@ class Form extends Component {
               <FormGroup>
                 <FormControl
                   type="text"
-                  value={this.state.fromName}
+                  value={formData.fromName}
                   placeholder="Name"
-                  onChange={(event) => { this.setState({ fromName: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('fromName', event.target.value))}
                 />
               </FormGroup>
               <FormGroup>
                 <FormControl
                   type="text"
-                  value={this.state.fromAddressLine1}
+                  value={formData.fromAddressLine1}
                   placeholder="Address Line 1"
-                  onChange={(event) => { this.setState({ fromAddressLine1: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('fromAddressLine1', event.target.value))}
                 />
               </FormGroup>
               <FormGroup>
                 <FormControl
                   type="text"
-                  value={this.state.fromAddressLine2}
+                  value={formData.fromAddressLine2}
                   placeholder="Address Line 2"
-                  onChange={(event) => { this.setState({ fromAddressLine2: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('fromAddressLine2', event.target.value))}
                 />
               </FormGroup>
               <FormGroup>
                 <FormControl
                   type="text"
-                  value={this.state.fromAddressCity}
+                  value={formData.fromAddressCity}
                   placeholder="City"
-                  onChange={(event) => { this.setState({ fromAddressCity: event.target.value }) }}
+                  onChange={(event) => dispatch(changeFormField('fromAddressCity', event.target.value))}
                 />
               </FormGroup>
               <Row>
@@ -181,9 +164,9 @@ class Form extends Component {
                   <FormGroup>
                     <FormControl
                       type="text"
-                      value={this.state.fromAddressState}
+                      value={formData.fromAddressState}
                       placeholder="State"
-                      onChange={(event) => { this.setState({ fromAddressState: event.target.value }) }}
+                      onChange={(event) => dispatch(changeFormField('fromAddressState', event.target.value))}
                     />
                   </FormGroup>
                 </Col>
@@ -191,9 +174,9 @@ class Form extends Component {
                   <FormGroup>
                     <FormControl
                       type="text"
-                      value={this.state.fromAddressZip}
+                      value={formData.fromAddressZip}
                       placeholder="Zip Code"
-                      onChange={(event) => { this.setState({ fromAddressZip: event.target.value }) }}
+                      onChange={(event) => dispatch(changeFormField('fromAddressZip', event.target.value))}
                     />
                   </FormGroup>
                 </Col>
@@ -202,7 +185,7 @@ class Form extends Component {
                 <FormControl
                   type="file"
                   onChange={(event) => {
-                    this.setState({ imageFile: event.target.files[0] });
+                    dispatch(changeFormField('imageFile', event.target.files[0]));
                   }}
                 />
               </FormGroup>
@@ -215,4 +198,8 @@ class Form extends Component {
   }
 }
 
-export default withRouter(connect()(Form));
+export default withRouter(connect(
+  state => ({
+    form: state.form
+  })
+)(Form));

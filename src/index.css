@@ -16,10 +16,16 @@ h1.app-logo {
 }
 
 .app-chrome {
+  padding-top: 10px;
+  padding-bottom: 50px;
   min-height:100vh;
   background-image: linear-gradient(45deg, #941F1F, #CE6B5D);
-  /*background-image: -webkit-linear-gradient(45deg, #361752, #B31B67);
-  background-image: -moz-linear-gradient(45deg, #361752, #B31B67);
-  background-image: -ms-linear-gradient(45deg, #361752, #B31B67);
-  background-image: -o-linear-gradient(45deg, #361752, #B31B67);*/
+  background-image: -webkit-linear-gradient(45deg, #941F1F, #CE6B5D);
+  background-image: -moz-linear-gradient(45deg, #941F1F, #CE6B5D);
+  background-image: -ms-linear-gradient(45deg, #941F1F, #CE6B5D);
+  background-image: -o-linear-gradient(45deg, #941F1F, #CE6B5D);
+}
+
+.preview-post-card {
+  margin-top: 30px;
 }
