@@ -1,38 +1,32 @@
 import nodemailer from 'nodemailer';
 
-nodemailer.createTestAccount((err, account) => {
-  if (err) {
-    console.error('Failed to create a testing account');
-    return console.error(err);
-  }
+const postalAccount = process.env.HELLO_POSTAL_NAME;
+const postalPass = process.env.HELLO_POSTAL_PASS;
 
-
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false,
-    auth: {
-      user: account.user,
-      pass: account.pass,
-    },
-  }, {
-    from: 'HelloPostal <no-reply@pangalink.net>',
-  });
-
-  const mailOptions = {
-    // from: 'Rick',
-    to: 'duulketariakan@yahoo.com',
-    subject: 'I\'m hungry',
-    text: 'Testing2',
-    html: '<div>This is a div</div>',
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.error(error);
-    }
-    console.log(`Message sent: ${info.messageId}`);
-    console.log(`Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
-    return 'test';
-  });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: postalAccount,
+    pass: postalPass,
+  },
 });
+
+const sendEmail = (toEmail, htmlTemplate) => {
+  const mailOptions = {
+    from: 'hellopostalco@gmail.com',
+    to: toEmail,
+    subject: 'Your HelloPostal Card',
+    text: 'Your card is on its way!',
+    html: htmlTemplate,
+  };
+  return transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(info);
+      console.log(`Preview Url: ${nodemailer.getTestMessageUrl(info)}`);
+    }
+  });
+}
+
+module.exports = sendEmail;

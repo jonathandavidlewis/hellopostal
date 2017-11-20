@@ -53,8 +53,8 @@
   "author": "Ricardo Gallegos, Jonathan Lewis, JP, Heather Park",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VeysonD/hellopostal/issues"
+    "url": "https://github.com/hellopostal/hellopostal/issues"
   },
-  "homepage": "https://github.com/VeysonD/hellopostal#readme",
+  "homepage": "https://github.com/hellopostal/hellopostal#readme",
   "proxy": "http://localhost:6060"
 }
