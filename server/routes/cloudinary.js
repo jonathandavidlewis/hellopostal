@@ -7,17 +7,6 @@ exports.uploadCloud = (req, res, next) => {
     const photoPath = req.files[0].path;
     const photoName = req.files[0].originalname;
 
-<<<<<<< HEAD
-    uploadPhoto(photoPath, photoName)
-      .then((response) => {
-        req.body.imageUrl = response.secure_url;
-        next();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-=======
   uploadPhoto(photoPath, photoName)
     .then((response) => {
       req.body.imageUrl = response.secure_url;
@@ -27,5 +16,4 @@ exports.uploadCloud = (req, res, next) => {
     .catch((error) => {
       console.error(error);
     });
->>>>>>> Adds border
 };
