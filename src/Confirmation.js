@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Image, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { clearToFields } from './actions/actions.js'
-
+import Loading from './Loading.js';
 
 class Confirmation extends Component {
   constructor() {
@@ -20,10 +20,14 @@ class Confirmation extends Component {
   }
 
   render() {
-    const { confirmation } = this.props;
     let preview = null;
     let msg = null
     let buttonText = 'Send A Card'
+    const { confirmation, isFetching } = this.props;
+
+    if (isFetching) {
+      return <Loading />
+    }
 
     if (confirmation.status === 200) {
       msg = (<h3>Your postcard has been sent!</h3>)
@@ -37,6 +41,7 @@ class Confirmation extends Component {
         </div>
       )
     }
+
     return (
       <div>
         {msg}
@@ -53,6 +58,7 @@ class Confirmation extends Component {
 
 export default withRouter(connect(
   state => ({
-    confirmation: state.confirmation
+    confirmation: state.confirmation,
+    isFetching: state.confirmation.isFetching
   })
 )(Confirmation))
