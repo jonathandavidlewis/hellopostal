@@ -18,3 +18,17 @@ export const receiveConfirmation = (status, data) => ({
   status,
   data
 });
+
+export const FINISH_FETCHING = 'FINISH_FETCHING';
+
+export const finishFetching = () => ({
+  type: FINISH_FETCHING
+});
+
+export const START_FETCHING = 'START_FETCHING';
+
+export const startFetching = () => ({
+  type: START_FETCHING
+});
+
+

@@ -1,23 +1,28 @@
-import { RECEIVE_CONFIRMATION } from '../actions/actions.js';
-import { SUBMIT_INFORMATION } from '../actions/actions.js';
+import { RECEIVE_CONFIRMATION, CHANGE_FORM_FIELD, CLEAR_TO_FIELDS, FINISH_FETCHING, START_FETCHING } from '../actions/actions.js';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import {
-  CHANGE_FORM_FIELD,
-  CLEAR_TO_FIELDS,
-  RECEIVE_CONFIRMATION
-} from '../actions/actions.js';
 
-const confirmation = (state = { status: null, data: null, isFetching: true}, action) => {
+const confirmation = (state = { status: null, data: null, isFetching: false}, action) => {
   switch (action.type) {
     case RECEIVE_CONFIRMATION:
       return {
         ...state,
         status: action.status,
-        data: action.data,
-        isFetching: false
+        data: action.data
       }
       
+    case FINISH_FETCHING:
+      return {
+        ...state,
+        isFetching: false        
+      }
+
+    case START_FETCHING:
+      return {
+        ...state,
+        isFetching: true
+      }
+
     default:
       return state;
   }

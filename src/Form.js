@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { FormControl, FormGroup, Col, Row, Grid, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { receiveConfirmation, changeFormField } from './actions/actions.js';
+import { receiveConfirmation, changeFormField, startFetching, finishFetching } from './actions/actions.js';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -41,6 +41,8 @@ class Form extends Component {
       fd.append(field, formData[field])
     });
 
+    dispatch(startFetching());
+
     history.push('/confirmation');
     
     axios.post(
@@ -50,7 +52,7 @@ class Form extends Component {
     ).then((response)=> {
       console.log('form post success');
       dispatch(receiveConfirmation(response.status, response.data));
-      // setTimeout(() => history.push('/confirmation'), 5000)
+      setTimeout(() => dispatch(finishFetching()), 10000)
       // setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
     }).catch((err) => console.error(err));
   }
