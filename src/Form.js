@@ -39,7 +39,9 @@ class Form extends Component {
 
     _.each(FieldNames, (field) => {
       fd.append(field, formData[field])
-    })
+    });
+
+    history.push('/confirmation');
 
     axios.post(
       '/api/cloud/',
@@ -48,7 +50,7 @@ class Form extends Component {
     ).then((response)=> {
       console.log('form post success');
       dispatch(receiveConfirmation(response.status, response.data));
-      setTimeout(() => history.push('/confirmation'), 5000)
+      // setTimeout(() => history.push('/confirmation'), 5000)
       // setTimeout(() => window.open(response.data.url,'_blank'), 3000);  //temporarly delay added so PDF can load
     }).catch((err) => console.error(err));
   }
