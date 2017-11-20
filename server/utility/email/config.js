@@ -5,12 +5,12 @@ nodemailer.createTestAccount((err, account) => {
     console.error('Failed to create a testing account');
     return console.error(err);
   }
-
+  console.log('what does the account look like:', account);
 
   const transporter = nodemailer.createTransport({
     name: 'ethereal',
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: account.smtp.host,
+    port: account.smtp.port,
     secure: false,
     auth: {
       user: account.user,
