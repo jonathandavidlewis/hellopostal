@@ -11,18 +11,22 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const mailOptions = {
-  from: 'hellopostalco@gmail.com',
-  to: '',
-  subject: 'Your HelloPostal Card',
-  text: 'Your card is on its way!',
-};
+const sendEmail = (toEmail, htmlTemplate) => {
+  const mailOptions = {
+    from: 'hellopostalco@gmail.com',
+    to: toEmail,
+    subject: 'Your HelloPostal Card',
+    text: 'Your card is on its way!',
+    html: htmlTemplate,
+  };
+  return transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(info);
+      console.log(`Preview Url: ${nodemailer.getTestMessageUrl(info)}`);
+    }
+  });
+}
 
-transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(info);
-    console.log(`Preview Url: ${nodemailer.getTestMessageUrl(info)}`);
-  }
-});
+module.exports = sendEmail;
