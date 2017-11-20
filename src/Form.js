@@ -42,7 +42,7 @@ class Form extends Component {
     });
 
     history.push('/confirmation');
-
+    
     axios.post(
       '/api/cloud/',
       fd,
