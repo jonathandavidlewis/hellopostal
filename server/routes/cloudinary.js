@@ -10,6 +10,7 @@ exports.uploadCloud = (req, res, next) => {
     uploadPhoto(photoPath, photoName)
       .then((response) => {
         req.body.imageUrl = response.secure_url;
+        req.body.image_public_id = `${response.public_id}.${response.format}`;
         next();
       })
       .catch((error) => {
