@@ -4,6 +4,7 @@ import path from 'path';
 import multer from 'multer';
 import { uploadCloud } from './routes/cloudinary';
 import { createPostcard } from './routes/lob';
+import { addBorder } from './utility/cloudinary/add-border';
 
 
 const app = express();
@@ -21,7 +22,7 @@ app.get('/home', (req, res) => {
   res.end('home page');
 });
 
-app.post('/api/cloud', upload.array('imageFile', 2), uploadCloud, createPostcard);
+app.post('/api/cloud', upload.array('imageFile', 2), uploadCloud, addBorder, createPostcard);
 
 app.get('/api/lob', createPostcard);
 
